@@ -13,15 +13,20 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 targetOffset;
     private Vector3 currentOffset;
+    private Camera cam;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        cam = GetComponent<Camera>();
     }
 
     void Update()
     {
         HandleEdgeMovement();
         currentOffset = Vector3.Lerp(currentOffset, targetOffset, 10f * Time.deltaTime);
+
+        LookAtMouse();
+
         transform.position = new Vector3(Player.transform.position.x + currentOffset.x, 12f, Player.transform.position.z - 6 + currentOffset.z);
     }
 
@@ -60,6 +65,23 @@ public class CameraFollow : MonoBehaviour
 
         targetOffset.x = Mathf.Clamp(targetOffset.x, -MaxXOffset, MaxXOffset);
         targetOffset.z = Mathf.Clamp(targetOffset.z, -MaxZOffset, MaxZOffset);
+    }
+
+    void LookAtMouse()
+    {
+        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        Debug.DrawRay(camRay.origin, camRay.direction * 1000, Color.yellow);
+
+        if (Physics.Raycast(camRay, out hit))
+        {
+            Vector3 targetPosition = new Vector3(hit.point.x, Player.transform.position.y, hit.point.z);
+
+            Quaternion rotation = Quaternion.LookRotation(targetPosition - Player.transform.position);
+
+            Player.transform.rotation = Quaternion.Lerp(Player.transform.rotation, rotation, Time.deltaTime * 10f);
+        }
     }
 
 }
