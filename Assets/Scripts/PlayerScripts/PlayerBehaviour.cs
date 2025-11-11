@@ -4,7 +4,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public float Health = 100f;
     public float BowDamage = 10f;
-    public float SpearDamage = 10f;
+    public float SpearDamage =  20f;
 
     private void Update()
     {

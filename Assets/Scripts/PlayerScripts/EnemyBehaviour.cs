@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
@@ -7,23 +8,36 @@ public abstract class EnemyBehaviour : MonoBehaviour
     public float EnemyHealth = 30;
     public float EnemyDamage = 20;
     public float EnemySpeed = 10;
+    bool isCoolDown = false;
     GameObject player;
 
-    private void Start()
+    public virtual void Start()
     {
         player = GameObject.Find("Player");
     }
     public virtual void Attack()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 10)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 3 && !isCoolDown)
         {
-            player.GetComponent<PlayerBehaviour>().Health -= EnemyDamage;
+            player.GetComponent<PlayerBehaviour>().GetDamage(EnemyDamage);
+            StartCoroutine(CoolDown());
         }
 
     }
-    private void Update()
+    
+    IEnumerator CoolDown()
     {
-        Console.WriteLine(Vector3.Distance(gameObject.transform.position, player.transform.position));
+        isCoolDown = !isCoolDown;
+        yield return new WaitForSeconds(2f);
+        isCoolDown = !isCoolDown;
+        
+    }
+
+    public virtual void Update()
+    {
+        //print(Vector3.Distance(gameObject.transform.position, player.transform.position));
+        print(EnemyHealth);
+        Attack();
         Dead();
     }
 
@@ -35,11 +49,17 @@ public abstract class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "")
-    //}
-
+    public virtual void GetDamage(bool isArrow)
+    {
+        if (isArrow)
+        {
+            EnemyHealth -= player.GetComponent<PlayerBehaviour>().BowDamage;
+        }
+        else
+        {
+            EnemyHealth -= player.GetComponent<PlayerBehaviour>().SpearDamage;
+        }
+    }
 
 
 }

@@ -41,10 +41,10 @@ public class PlayerShoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !canFire)
         {
-                print(timer); 
+                //print(timer); 
                 if (timer <= 0 && !StopCharge)
                 {
-                    print("Fire"); 
+                    //print("Fire"); 
                     canFire = true;
                     StopCharge = true;
                 } else
