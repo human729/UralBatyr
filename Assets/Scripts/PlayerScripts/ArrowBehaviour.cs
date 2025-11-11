@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpearBehaviour : MonoBehaviour
+public class ArrowBehaviour : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
