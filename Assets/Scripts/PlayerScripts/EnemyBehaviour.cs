@@ -40,10 +40,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
         print(EnemyHealth);
         Attack();
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 10)
-        {
-            player.GetComponent<PlayerBehaviour>().Health -= EnemyDamage;
-        }
+       
         Dead();
     }
     
