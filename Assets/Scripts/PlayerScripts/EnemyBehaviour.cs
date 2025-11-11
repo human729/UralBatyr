@@ -39,15 +39,12 @@ public abstract class EnemyBehaviour : MonoBehaviour
         //print(Vector3.Distance(gameObject.transform.position, player.transform.position));
         print(EnemyHealth);
         Attack();
-
-       
         Dead();
     }
     
 
     public virtual void Dead()
     {
-
         if(EnemyHealth <= 0)
         {
             Destroy(gameObject);

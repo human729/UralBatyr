@@ -12,7 +12,7 @@ public class ArrowBehaviour : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject,1);
+            Destroy(gameObject);
         }
         
     }
