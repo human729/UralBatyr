@@ -8,7 +8,6 @@ public class SpearBehaviour : MonoBehaviour
         if ((enemyLayer.value & (1 << other.gameObject.layer)) != 0)
         {
             other.gameObject.GetComponent<MeleeEnemy>().GetDamage(false);
-            Destroy(gameObject);
         }
 
     }
