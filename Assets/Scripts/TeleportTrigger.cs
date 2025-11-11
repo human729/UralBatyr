@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class TeleportTrigger : MonoBehaviour
 {
     public Transform[] teleportPoints;
-
+    [SerializeField] GameObject UpdatePanel;
     private bool playerInTrigger = false;
     private Vector3 currentPosition;
 
@@ -33,6 +33,7 @@ public class TeleportTrigger : MonoBehaviour
     {
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            UpdatePanel.SetActive(true);
             TeleportToRandomPoint();
         }
     }

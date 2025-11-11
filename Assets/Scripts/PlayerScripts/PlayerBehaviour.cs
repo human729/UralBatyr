@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float Health = 100f;
+    public float MaxHealth = 100f;
     public float BowDamage = 10f;
     public float SpearDamage =  20f;
-
+    [SerializeField] GameObject panel;
     private void Update()
     {
         CheckHp();
@@ -20,7 +21,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Dead()
     {
-        Destroy(GameObject.Find("Player"));
+
+        GameObject.Find("Player").SetActive(false);
+        panel.SetActive(true);
+
     }
 
     public void GetDamage(float damage)
