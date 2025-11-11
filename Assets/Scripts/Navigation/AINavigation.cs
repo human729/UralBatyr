@@ -6,7 +6,11 @@ public class AINavigation : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     public Transform target;
 
-    // Update is called once per frame
+
+    private void Start()
+    {
+        target = GameObject.FindWithTag("Player").transform;
+    }
     void Update()
     {
         agent.SetDestination(target.position);
