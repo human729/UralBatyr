@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyBehaviour
 {
+
     public override void Attack()
     {
         base.Attack();
@@ -25,4 +26,5 @@ public class MeleeEnemy : EnemyBehaviour
     {
         base.Update();
     }
+
 }
