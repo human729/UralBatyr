@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class TeleportTrigger : MonoBehaviour
 {
     public Transform[] teleportPoints;
-    public KeyCode interactionKey = KeyCode.E;
 
     private bool playerInTrigger = false;
     private Vector3 currentPosition;
@@ -32,7 +31,7 @@ public class TeleportTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInTrigger && Input.GetKeyDown(interactionKey))
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
             TeleportToRandomPoint();
         }
