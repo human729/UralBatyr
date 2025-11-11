@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     {
         if (player != null)
         {
-            slider.maxValue = player.MaxHealth;
+            //slider.maxValue = player.MaxHealth;
             slider.value = player.Health;
         }
     }

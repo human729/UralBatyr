@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class AINavigation : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    public Transform target;
+    [SerializeField] Transform target;
 
 
     private void Start()

@@ -46,7 +46,7 @@ public class RoomHandle : MonoBehaviour
         for (int i = 0; i < EnemyCount; i++)
         {
             GameObject singleEnemy = Enemy;
-            singleEnemy.GetComponent<AINavigation>().target = Player.transform;
+          //  singleEnemy.GetComponent<AINavigation>().target = Player.transform;
             Enemies.Add(Instantiate(singleEnemy, new Vector3(Random.Range(minX, maxX), y, Random.Range(minZ, maxZ)), Quaternion.identity));
         }
     }
