@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ public class PlayerResources : MonoBehaviour
 
     private static int LastKumisValue;
     private static int LastChakChakValue;
+
+    [Header("References")]
+    public PlayerBehaviour playerStats;
 
     [Header("UI")]
     public Text KumisText;
@@ -34,12 +38,18 @@ public class PlayerResources : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (Resources["Kumis"] > 0)
+            {
                 Resources["Kumis"]--;
+                playerStats.Health += 50f;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (Resources["ChakChak"] > 0)
+            {
+                StartCoroutine(Buff());
                 Resources["ChakChak"]--;
+            }
         }
 
         if (Resources["Kumis"] != LastKumisValue || Resources["ChakChak"] != LastChakChakValue)
@@ -49,5 +59,14 @@ public class PlayerResources : MonoBehaviour
             KumisText.text = LastKumisValue.ToString();
             ChakChakText.text = LastChakChakValue.ToString();
         }
+    }
+
+    IEnumerator Buff()
+    {
+        playerStats.BowDamage += 2.5f;
+        playerStats.SpearDamage += 5f;
+        yield return new WaitForSeconds(45f);
+        playerStats.BowDamage -= 2.5f;
+        playerStats.SpearDamage -= 5f;
     }
 }

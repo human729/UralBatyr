@@ -36,10 +36,6 @@ public class RoomHandle : MonoBehaviour
                 }
                 
                 StartCoroutine(WaveEndWaiting());
-                if (!Enemies.Any())
-                {
-                    StartCoroutine(WaitForOpenDoor());
-                }
             }
         }
     }
@@ -47,7 +43,6 @@ public class RoomHandle : MonoBehaviour
     public void SpawnEnemies()
     {
         int EnemyCount = Random.Range(3, 10);
-        Enemies.Clear();
         for (int i = 0; i < EnemyCount; i++)
         {
             GameObject singleEnemy = Enemy;
@@ -68,19 +63,10 @@ public class RoomHandle : MonoBehaviour
                 Destroy(enemy);
             }
         }
-    }
-
-    IEnumerator WaitForOpenDoor()
-    {
-        yield return new WaitForSeconds(1.5f);
-        if (!Enemies.Any())
+        Enemies.Clear();
+        foreach (Animation anim in GatesAnims)
         {
-            foreach (Animation anim in GatesAnims)
-            {
-                anim.Play("DownGates");
-            }
-            isStarted = false;
-            print("End");
+            anim.Play("DownGates");
         }
     }
 }
