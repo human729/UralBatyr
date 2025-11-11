@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject ArrowPrefab;
     public GameObject Spear;
     public Transform ShootPoint;
+    public Slider ChargeSlider;
 
     public float ArrowSpeed;
     public float ChargeTime = 1f;
@@ -20,11 +22,14 @@ public class PlayerShoot : MonoBehaviour
     {
         timer = ChargeTime;
         animator = GetComponent<Animator>();
+        ChargeSlider.maxValue = ChargeTime;
+        ChargeSlider.minValue = 0f;
     }
 
     void Update()
     {
         BowBehavior();
+        ChargeSlider.value = timer;
         SpearStart();
     }
 

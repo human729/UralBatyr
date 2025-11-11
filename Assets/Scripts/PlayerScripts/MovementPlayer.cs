@@ -7,15 +7,25 @@ public class MovementPlayer : MonoBehaviour
     private CharacterController characterController;
     float horizontal;
     float vertical;
+    private Animator animator;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        if(horizontal != 0f || vertical != 0f)
+        {
+            animator.SetBool("walk", true);
+        } else
+        {
+            animator.SetBool("walk", false);
+        }
 
         Vector3 moveVector = new Vector3(horizontal, 0, vertical) * Speed * Time.deltaTime;
         characterController.Move(moveVector);
