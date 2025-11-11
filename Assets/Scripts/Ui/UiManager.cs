@@ -13,7 +13,7 @@ public class UiManager : MonoBehaviour
             PauseMenu.SetActive(true);
             isPauseActive = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPauseActive) 
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPauseActive)
         {
             PauseMenu.SetActive(false);
             isPauseActive = false;
