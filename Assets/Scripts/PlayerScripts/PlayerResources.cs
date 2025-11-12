@@ -9,6 +9,7 @@ public class PlayerResources : MonoBehaviour
 
     private static int LastKumisValue;
     private static int LastChakChakValue;
+    public PlayerBehaviour Stats;
 
     [Header("UI")]
     public Text KumisText;
@@ -34,7 +35,10 @@ public class PlayerResources : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (Resources["Kumis"] > 0)
+            {
                 Resources["Kumis"]--;
+                Stats.Health += 15;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {

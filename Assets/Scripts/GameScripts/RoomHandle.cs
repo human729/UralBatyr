@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class RoomHandle : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class RoomHandle : MonoBehaviour
     [Header("Targets")]
     public GameObject Enemy;
     public GameObject Player;
+    public Text TimeRemains;
+    public GameObject Teleport;
 
     [Header("SpawnZone")]
     public float minX;
@@ -57,13 +60,15 @@ public class RoomHandle : MonoBehaviour
         for (int i = 0; i < WavesCount; i++)
         {
             SpawnEnemies();
-            yield return new WaitForSeconds(5f);
+            TimeRemains.text = "15 секунд (тест время)";
+            yield return new WaitForSeconds(15f);
             foreach (var enemy in Enemies)
             {
                 Destroy(enemy);
             }
         }
         Enemies.Clear();
+        Teleport.SetActive(true);
         foreach (Animation anim in GatesAnims)
         {
             anim.Play("DownGates");
